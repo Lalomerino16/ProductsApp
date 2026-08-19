@@ -9,6 +9,7 @@ export interface AuthResponse {
   gender:Gender
   image: string;
   token: string;
+  accessToken: string;
   refreshToken: string;
 }
 

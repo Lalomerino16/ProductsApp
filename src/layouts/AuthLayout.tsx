@@ -6,10 +6,12 @@ export const AuthLayout = () => {
 
 
     return(
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px', }}>
+        <section
+              style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} className="border-2"
+    >
             <div style={{width: '100%', }}>
                 <Outlet />
             </div>
-        </div>
+        </section>
     )
 }

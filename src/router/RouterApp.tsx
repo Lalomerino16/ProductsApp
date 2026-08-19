@@ -5,6 +5,7 @@ import { HomePage } from "@/shop/pages/HomePage/HomePage";
 import { ShoppLayout } from "@/shop/layouts/ShoppLayout";
 import { ProductPage } from "@/shop/pages/Product/ProductPage";
 import { LoginPage } from "@/auth/pages/LoginPage";
+import { RegisterPage } from "@/auth/pages/RegisterPage";
 
 
 
@@ -27,9 +28,10 @@ export const RouterApp = createBrowserRouter([
         
     {
         path: '/auth',
-        element: <NotAuthenticatedRoute>
-            <AuthLayout />
-        </NotAuthenticatedRoute>,
+        element: 
+            <NotAuthenticatedRoute>
+                <AuthLayout />
+            </NotAuthenticatedRoute>,
         children: [
             {
                 index: true,
@@ -38,6 +40,10 @@ export const RouterApp = createBrowserRouter([
             {
                 path: 'login',
                 element: <LoginPage />
+            },
+            {
+                path: 'register',
+                element: <RegisterPage />
             }
         ]
     }

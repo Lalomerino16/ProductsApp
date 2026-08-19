@@ -7,5 +7,9 @@ export interface User {
     email: string;
     firstName: string;
     lastName: string;
-    image: string
+    image: string;
+    gender: string;
+    role: Role;
 }
+
+type Role = "admin" | "moderator" | "user";

@@ -5,16 +5,11 @@ export const loginAction = async (
   username: string,
   password: string
 ): Promise<AuthResponse> => {
-    // eslint-disable-next-line no-useless-catch
-    try {
-        const { data } = await dummyApi.post<AuthResponse>('/auth/login', {
-            username,
-            password,
-        });
 
-        return data;
-
-    } catch (error) {
-        throw error;
-    }
+    const { data } = await dummyApi.post<AuthResponse>('/auth/login', {
+        username,
+        password,
+    });
+    
+    return data;
 };

@@ -6,6 +6,7 @@ import { useAuthStore } from "../../auth/store/auth.store";
 
 export const NotAuthenticatedRoute = ({ children }: PropsWithChildren) => {
 
+    //Preguntamos a zustand si existe un usuario
     const isAuthenticated = useAuthStore(
         (state) => state.user !== null
     );
