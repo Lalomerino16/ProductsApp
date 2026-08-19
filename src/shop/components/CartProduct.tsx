@@ -1,6 +1,7 @@
 import { Minus, Plus, Trash2 } from "lucide-react";
 import type { CartItem } from "../types/CartItem.interface";
 import { useCartStore } from "@/store/cart.store";
+import { useNavigate } from "react-router";
 
 
 interface CartProductProps{
@@ -10,15 +11,20 @@ interface CartProductProps{
 
 
 
+
 export const CartProduct = ({ cartProduct }: CartProductProps) => {
 
+    const navigate = useNavigate();
     const removeItem = useCartStore((state) => state.removeItem);
     const addItem = useCartStore((state) => state.addItem);
     const decreaseItem = useCartStore((state) => state.decreaseItem);
     
+    const handleProductDetail = (id: number) => {
+        navigate(`/product/${id}`)
+    }
 
     return(
-        <li className="flex gap-4 py-5">
+        <li className="flex gap-4 py-5">            
             <div className="size-20 shrink-0 overflow-hidden rounded-lg border border-border bg-muted">
                 <img 
                     className="size-full object-cover"
@@ -30,7 +36,12 @@ export const CartProduct = ({ cartProduct }: CartProductProps) => {
             <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
-                        <p className="truncate text-sm font-medium">{cartProduct.title}</p>
+                        <a 
+                            onClick={() => handleProductDetail(cartProduct.id)} 
+                            className="truncate text-sm font-medium hover:underline cursor-pointer hover:text-primary"
+                        >
+                            {cartProduct.title}
+                        </a>
                     </div>
                     <button
                         onClick={() => removeItem(cartProduct.id)}

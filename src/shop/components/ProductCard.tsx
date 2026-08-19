@@ -33,7 +33,6 @@ export const ProductCard = ({id, title, image, price, description, category }: P
             thumbnail: image,
             quantity: 1,
         });
-        console.log(useCartStore.getState().items);
     }
 
     
