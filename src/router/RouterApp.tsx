@@ -1,18 +1,23 @@
 import { createBrowserRouter, Navigate } from "react-router";
-import { NotAuthenticatedRoute } from "../components/custom/ProtectedRoutes";
+import { AdminRoute, AuthenticatedRoute, PublicOnlyRoute } from "../components/custom/ProtectedRoutes";
 import { AuthLayout } from "../layouts/AuthLayout";
 import { HomePage } from "@/shop/pages/HomePage/HomePage";
 import { ShoppLayout } from "@/shop/layouts/ShoppLayout";
 import { ProductPage } from "@/shop/pages/Product/ProductPage";
 import { LoginPage } from "@/auth/pages/LoginPage";
 import { RegisterPage } from "@/auth/pages/RegisterPage";
+import { DashboardAdminLayout } from "@/dashboard-admin/layouts/DashboardAdminLayout";
+import { DashboardPage } from "@/dashboard-admin/pages/DashboardPage";
 
 
 
 export const RouterApp = createBrowserRouter([
     {   
         path: '/',
-        element: <ShoppLayout />,
+        
+        element: <AuthenticatedRoute>
+            <ShoppLayout />
+        </AuthenticatedRoute>, 
         children: [
             {
                 index: true,
@@ -28,10 +33,10 @@ export const RouterApp = createBrowserRouter([
         
     {
         path: '/auth',
-        element: 
-            <NotAuthenticatedRoute>
-                <AuthLayout />
-            </NotAuthenticatedRoute>,
+        element: <PublicOnlyRoute>
+            <AuthLayout />
+        </PublicOnlyRoute>, 
+            
         children: [
             {
                 index: true,
@@ -46,5 +51,18 @@ export const RouterApp = createBrowserRouter([
                 element: <RegisterPage />
             }
         ]
+    }, 
+    {
+        path: '/admin',
+        element: <AdminRoute>
+            <DashboardAdminLayout />
+        </AdminRoute>,
+        children: [
+            {
+                index: true,
+                element: <DashboardPage />
+            }
+        ]
     }
+    
 ])

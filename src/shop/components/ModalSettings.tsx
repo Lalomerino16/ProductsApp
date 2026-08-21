@@ -6,6 +6,8 @@ import {
 } from "@/components/ui/popover"
 import { LogOut, UserRound, LayoutDashboard   } from 'lucide-react';
 import { Switch } from "@/components/ui/switch"
+import { useNavigate } from "react-router";
+
 
 interface ModalSettingProps {
     open: boolean;
@@ -16,6 +18,7 @@ interface ModalSettingProps {
 }
 
 export const ModalSetting = ({user, open, onOpenChange, logOut, children }: ModalSettingProps) =>  {
+    const navigate = useNavigate();
 
     return (
         <Popover  open={open} onOpenChange={onOpenChange}>
@@ -46,10 +49,15 @@ export const ModalSetting = ({user, open, onOpenChange, logOut, children }: Moda
                             <UserRound />
                             Profile
                         </li>
-                        <li className="flex gap-2 font-medium cursor-pointer hover:bg-gray-200 rounded-md px-2 py-2 hover:dark:bg-background">
-                            <LayoutDashboard />
-                            Inventario
-                        </li>
+                        {user?.role === "admin" && (
+                            <li 
+                                className="flex gap-2 font-medium cursor-pointer hover:bg-gray-200 rounded-md px-2 py-2 hover:dark:bg-background"
+                                onClick={() => navigate("/admin")}
+                            >
+                                <LayoutDashboard />
+                                Inventario
+                            </li>
+                        )}
                         <li 
                             onClick={logOut}
                             className="flex gap-2 font-medium text-red-500 cursor-pointer hover:bg-gray-300 rounded-md pl-2 pr-2 pt-2 pb-2"
