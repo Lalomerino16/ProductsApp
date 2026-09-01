@@ -1,10 +1,11 @@
-import type { CartProduct } from "./productCart.interface";
+import type { ProductCart } from "./productCart.interface";
+
 
 
 
 export interface Cart{
     id: number,
-    products: CartProduct[],
+    products: ProductCart[],
     total: number,
     discountedTotal: number,
     userId: number,

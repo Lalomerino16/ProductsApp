@@ -15,7 +15,7 @@ export const CustomHeader = () => {
    
     
     return(
-        <header className="w-full border-b sticky top-0 z-50 h-18 bg-background">
+        <header className="w-full border-b sticky top-0 z-50 h-18 bg-background container__header">
             <div className="container mx-auto px-4 lg:px-8">
                 <div className="flex items-center justify-between h-16 ">
                     
@@ -29,7 +29,7 @@ export const CustomHeader = () => {
                                     <CartButton />
                                 </span>
                             </li>
-                            <li> 
+                            <li className="hidden md:block lg:block xl:block"> 
                                 <span  
                                     onClick={toggleTheme}
                                     className="cursor-pointer h-12 w-12 rounded-full bg-muted text-foreground border-border border  flex items-center justify-center"
@@ -39,25 +39,28 @@ export const CustomHeader = () => {
                             </li>
                         </ul>
 
-                        <ModalSetting logOut={logOut} open={isOpen} onOpenChange={setIsOpen} user={user}>
+                        <ModalSetting 
+                            logOut={logOut} 
+                            open={isOpen} 
+                            onOpenChange={setIsOpen} 
+                            user={user} 
+                            
+                        >
                             <button
                                 className="flex gap-4 hover:bg-background border rounded-md items-center px-3 py-2 cursor-pointer"
                             >
-                            <div className="h-10 w-10 rounded-full bg-muted text-foreground border flex items-center justify-center">
-                                <img 
-                                    src={user?.image}
-                                    alt={user?.firstName}
-                                />
-                                <User />
-                            </div>
+                                <div className="h-10 w-10 rounded-full bg-muted text-foreground border flex items-center justify-center">
+                                    <img 
+                                        src={user?.image}
+                                        alt="name_product"
+                                    />
+                                    <User />
+                                </div>
                                 <p>{user?.firstName}</p>
                             </button>
                         </ModalSetting>
                         
-                        
-
                     </div>
-
                 </div>
             </div>
         </header>

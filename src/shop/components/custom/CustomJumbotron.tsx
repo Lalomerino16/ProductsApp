@@ -14,7 +14,7 @@ export const CustomJumbotron = ({ title, subtitle }: CustomJumbotronProps) => {
                 <h1 className="font-montserrat text-2xl lg:text-5xl  tracking-tight mb-6">
                     {title}
                 </h1>
-                <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto dark:text-white">
 
                     {subtitle}
                 </p>

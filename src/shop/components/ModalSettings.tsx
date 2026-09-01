@@ -38,7 +38,7 @@ export const ModalSetting = ({user, open, onOpenChange, logOut, children }: Moda
                         </div>
                     </div>
                     <hr />
-                    <ul className="flex flex-col gap-2 justify-center">
+                    <ul className=" flex flex-col gap-2 justify-center">
                         <li className="flex items-center px-2 py-2">
                             <Switch 
                                 id="airplane-mode" 

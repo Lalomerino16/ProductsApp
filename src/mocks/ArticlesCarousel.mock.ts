@@ -1,27 +1,46 @@
-import type { ArticlesImages } from "@/types/ArticlesImages.interface";
+import product1 from "../../public/assets/product-backpack.jpg";
+import product2 from "../../public/assets/product-candle.jpg";
+import product3 from "../../public/assets/product-earbuds.jpg";
+import product4 from "../../public/assets/product-headphones.jpg";
+import product5 from "../../public/assets/product-speaker.jpg";
+import product6 from "../../public/assets/product-sunglasses.jpg";
+import product7 from "../../public/assets/product-vase.jpg";
+
+interface imagesProps{
+    id: number;
+    image: string;
+}
 
 
-
-export const imagesCarousel: ArticlesImages[] = [
+export const imagesCarousel: imagesProps[] = [
     {
         id: 1,
-        title: "Descubre lo que buscas",
-        description:
-            "Explora una gran variedad de productos en un solo lugar.",
-        image: "...",
+        image: product1,
     },
     {
         id: 2,
-        title: "Ofertas que no puedes dejar pasar",
-        description:
-            "Encuentra productos increíbles a precios especiales.",
-        image: "...",
+        image: product2,
     },
     {
         id: 3,
-        title: "Compra fácil y segura",
-        description:
-            "Encuentra tus productos favoritos y disfruta una experiencia sencilla.",
-        image: "...",
+        image: product3,
     },
+        {
+        id: 4,
+        image: product4,
+    },
+        {
+        id: 5,
+        image: product5,
+    },
+        {
+        id: 6,
+        image: product6,
+    },
+    {
+        
+        id: 7,
+        image: product7,
+    },
+
 ];

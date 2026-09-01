@@ -18,7 +18,7 @@ export const HomePage = () => {
         <main>
             <CustomJumbotron 
                 title="Todos los productos"
-                subtitle="Subtitulo"
+                subtitle="Explora la variedad de productos que tenemos para ti todos los dias."
             />
             
             <FilterProducts />

@@ -1,17 +1,25 @@
+import { ArticlesCarousel } from "@/auth/components/custom/ArticlesCarousel"
+import { AuthCardContainer } from "@/auth/layouts/AuthCardContainer"
 import { Outlet } from "react-router"
 
 
  
 export const AuthLayout = () => {
 
-
     return(
-        <section
-              style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} className="border-2"
-    >
-            <div style={{width: '100%', }}>
-                <Outlet />
-            </div>
-        </section>
+        <main
+            className="h-screen"
+        >          
+            <section className="flex h-full">
+                <div className="flex-1">
+                    <AuthCardContainer>
+                        <Outlet />
+                    </AuthCardContainer>
+                </div>
+                <div className="hidden lg:flex flex-1 bg-muted/30 items-center justify-center relative overflow-hidden">
+                    <ArticlesCarousel />
+                </div>
+            </section>
+        </main>
     )
 }

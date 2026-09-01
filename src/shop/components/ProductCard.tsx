@@ -59,6 +59,7 @@ export const ProductCard = ({id, title, image, price, description, category }: P
                             variant='outline'
                             onClick={handleAddToCart}
                             disabled={isInCart}
+                            aria-label="Agregar al carrito"
                         >   
                             {isInCart ? (
                                 <Check className="text-green-600" />    
