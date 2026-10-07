@@ -6,6 +6,7 @@ import { CartButton } from "../CartButton";
 import { ModalSetting } from '@/shop/components/ModalSettings';
 import { useThemeStore } from "@/store/theme.store";
 import { useAuthStore } from "@/auth/store/auth.store";
+import { NavLink } from "react-router";
 
 
 export const CustomHeader = () => {
@@ -20,6 +21,25 @@ export const CustomHeader = () => {
                 <div className="flex items-center justify-between h-16 ">
                     
                     <CustomLogo subtittle="Shop" />
+
+                    <div>
+                        <ul className="flex items-center gap-5">
+                            <li className="flex items-center gap-2 hover:underline">
+                                
+                                <NavLink
+                                    to="/"
+                                >
+                                    Inicio
+                                </NavLink>
+                            </li>
+                            <li className="flex items-center gap-2 hover:underline">
+                                
+                                <NavLink to="/products">
+                                    Productos
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
 
                     <div className="flex gap-15 items-center">
 

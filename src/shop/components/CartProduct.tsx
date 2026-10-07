@@ -20,7 +20,7 @@ export const CartProduct = ({ cartProduct }: CartProductProps) => {
     const decreaseItem = useCartStore((state) => state.decreaseItem);
     
     const handleProductDetail = (id: number) => {
-        navigate(`/product/${id}`)
+        navigate(`/product/${id}`) 
     }
 
     return(

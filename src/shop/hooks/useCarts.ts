@@ -2,10 +2,6 @@ import { useQuery } from "@tanstack/react-query"
 import { getCarts } from "../actions/getCarts.action"
 
 
-
-
-
-
 export const useCarts = () => {
 
     const query = useQuery({

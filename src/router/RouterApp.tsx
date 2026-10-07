@@ -8,13 +8,15 @@ import { LoginPage } from "@/auth/pages/LoginPage";
 import { RegisterPage } from "@/auth/pages/RegisterPage";
 import { DashboardAdminLayout } from "@/dashboard-admin/layouts/DashboardAdminLayout";
 import { DashboardPage } from "@/dashboard-admin/pages/DashboardPage";
+import { CheckOutPage } from "@/shop/pages/CheckOutPage/CheckOutPage";
+import { GeneralPage } from "@/shop/pages/GeneralPage";
+import { ProductsPage } from "@/shop/pages/Products/ProductsPage";
 
 
 
 export const RouterApp = createBrowserRouter([
     {   
         path: '/',
-        
         element: <AuthenticatedRoute>
             <ShoppLayout />
         </AuthenticatedRoute>, 
@@ -24,8 +26,16 @@ export const RouterApp = createBrowserRouter([
                 element: <HomePage />
             },
             {
+                path: 'products',
+                element: <ProductsPage />
+            },
+            {
                 path: 'product/:id',
                 element: <ProductPage />
+            },
+            {
+                path: 'checkout',
+                element: <CheckOutPage />
             }
         ]
         
@@ -63,6 +73,10 @@ export const RouterApp = createBrowserRouter([
                 element: <DashboardPage />
             }
         ]
+    },
+    {
+        path: '/general',
+        element: <GeneralPage />
     }
     
 ])

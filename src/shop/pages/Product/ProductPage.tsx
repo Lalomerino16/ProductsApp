@@ -6,17 +6,15 @@ import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { getProductAction } from "@/shop/actions/getProduct.action";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, ShoppingBag } from "lucide-react";
+import { Check, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { ProductDetails } from "./components/ProductDetails";
-//import { ReviewsSection } from "./components/ReviewsSection";
-//import { cn } from "@/lib/utils";
-//import { Star } from "lucide-react";
-//import { Star } from "lucide-react"
+import { useCartStore } from "@/store/cart.store";
 
 
 export const ProductPage = () => {
-     const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(1);
+    const [isAdded, setIsAdded] = useState(false);
 
     const { id } = useParams();
 
@@ -26,16 +24,34 @@ export const ProductPage = () => {
         retry: false,
     });
 
+    const addItem = useCartStore((state) => state.addItem);
+
     if (!product) {
         return <h3>Loading...</h3>;
     }
  
     const handleDecrease = () => {
-        setQuantity(-1)
+        setQuantity((prev) => Math.max(prev - 1, 1));
     }
 
+    const handleIncrease = () => {
+        setQuantity((prev) => Math.min(prev + 1, product.stock));
+    }
+    
     const handleAddToCart = () => {
-
+        
+        addItem(
+            {
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                thumbnail: product.thumbnail,
+                stock: product.stock,
+            },
+            quantity
+        );
+        setIsAdded(true);
+        setTimeout(() => setIsAdded(false), 1500);
     }
 
     return(
@@ -74,20 +90,6 @@ export const ProductPage = () => {
 
                         {/* Rating */}
                         <div className="flex items-center gap-3">
-                            <div className="flex items-center gap-1">
-                                {/* {[...Array(5)].map((_, i) => (
-                                    <Star
-                                        key={i}
-                                        className={`w-5 h-5 ${
-                                            i < fullStars
-                                                ? 'fill-amber-400 text-amber-400'
-                                                : i === fullStars && hasHalfStar
-                                                ? 'fill-amber-400/50 text-amber-400'
-                                                : 'text-muted-foreground/30'
-                                        }`}
-                                    />
-                                ))} */}
-                            </div>
                             <span className="font-semibold text-foreground">
                                 {product.rating}
                             </span>
@@ -109,13 +111,11 @@ export const ProductPage = () => {
                                     product?.stock > 10 ? 'bg-green-500' : product?.stock > 0 ? 'bg-amber-500' : 'bg-destructive'
                                 }`}
                             />
-                            <span>
-                                {product?.availabilityStatus}
-                            </span>
+                            <span>{product?.availabilityStatus}</span>
+
                             {product?.stock <= 10 && product?.stock > 0 && (
                                 <span className="text-sm text-muted-foreground">
                                     — Solo quedan {product?.stock} unidades
-                                    Solo quedan 1 unidades
                                 </span>
                             )}
                         </div>
@@ -154,6 +154,7 @@ export const ProductPage = () => {
                                     {quantity}
                                 </span>
                                 <Button
+                                    onClick={handleIncrease}
                                     variant='ghost'
                                     size='icon'
                                     className="h-10 w-10 rounded-none hover:bg-secondary"
@@ -164,16 +165,11 @@ export const ProductPage = () => {
                             </div>
                         </div>
                         <Button
-                            // size="lg"
-                            //     className={cn(
-                            //     "w-full h-14 text-base font-semibold rounded-xl transition-all duration-300",
-                            //     isAdded && "bg-green-600 hover:bg-green-600"
-                            // )}
                             onClick={handleAddToCart}
                             disabled={product?.stock === 0}
                             className="w-full h-14 text-base font-semibold rounded-xl transition-all duration-300"
                         >
-                            {/* {isAdded ? (
+                            {isAdded ? (
                                 <>
                                     <Check className="mr-2 h-5 w-5" />
                                     ¡Añadido al carrito!
@@ -183,9 +179,7 @@ export const ProductPage = () => {
                                     <ShoppingBag className="mr-2 h-5 w-5" />
                                     Añadir al carrito
                                 </>
-                            )} */}
-                            <ShoppingBag className="mr-2 h-5 w-5" />
-                            Añadir al carrito
+                            )}
                         </Button>
                         {product?.minimumOrderQuantity > 1 && (
                             <p className="text-xs text-muted-foreground text-center">
